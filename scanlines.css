@@ -1,0 +1,17 @@
+body::before {
+  content: '';
+  position: fixed; /* changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(7, 7, 7, 0.322) 0px,
+    rgba(56, 56, 56, 0.164) 2px,
+    rgba(0, 0, 0, 0.89) 4px
+  );
+  z-index: 9999; /* highest priority */
+  pointer-events: none;
+  opacity: 1.0;
+}

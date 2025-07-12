@@ -1,0 +1,133 @@
+/* BIOS Theme */
+
+body {
+  background-color: black;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 20px;
+  text-shadow: 0 0 1px #ffffff, 0 0 3px #f7f7f7;
+  animation: flicker 2s infinite;
+}
+
+/* Scanlines (optional, see scanlines.css) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(10, 10, 10, 0.05),
+    rgba(22, 22, 22, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+}
+
+/* Flicker Animation */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.85;
+  }
+}
+
+/* BIOS Header */
+.bios-header {
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: 15px;
+  white-space: pre-line;
+}
+
+/* Member Carousel */
+.members-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Member Card */
+.member-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ffffff;
+  padding: 10px;
+  width: 280px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #ffffff;
+}
+
+.member-card img.cover-image {
+  width: 100%;
+  border: 1px solid #ffffff;
+  margin-bottom: 10px;
+}
+
+.member-card .content {
+  text-align: left;
+}
+
+.member-card .bio {
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.member-card .socials a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(1.2) contrast(1.2) hue-rotate(60deg);
+}
+
+/* Expanded Card */
+.member-card.expanded {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-color: #ff0000;
+}
+
+/* Arrows / Controls */
+.controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.controls .arrow {
+  background: black;
+  color: #f8fff8;
+  border: 1px solid #00ff0000;
+  padding: 5px 15px;
+  font-size: 18px;
+  font-family: monospace;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: 0.2s;
+}
+
+.controls .arrow:hover {
+  background: rgba(0, 51, 0, 0);
+}
+
+/* Hint Text */
+.hint-text,
+.hint-text2 {
+  color: #ffffff;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+  font-family: monospace;
+  opacity: 0.8;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>booting system</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scanlines.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: rgb(0, 0, 0);
+      color: #ffffffc0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    #output {
+      white-space: pre-wrap;
+      line-height: 1.5;
+      animation: flicker 1.5s infinite;
+    }
+
+    .ok {
+      color: #016801;
+    }
+
+    .error {
+      color: #c01c1c;
+    }
+
+    .highlight {
+      color: #ffd900ad;
+    }
+
+    #cursor {
+      display: inline-block;
+      animation: blink 1s steps(2, start) infinite;
+      font-weight: bold;
+      color: #ffffffb0;
+    }
+
+    #clock {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.466);
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0.8; }
+    }
+
+    a {
+      color: #ff0000;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body class="scanlines">
+  <div id="output"></div><span id="cursor">&block;</span>
+  <div id="clock"></div>
+
+  <script>
+    const lines = [
+      "<span class='highlight'>AMIBIOS (C) 1985-2025 American Megatrends, Inc.</span>",
+      "BIOS Version: 2.61  Date: 07/12/2025",
+      "CPU: Intel(R) Core(TM) i7-9700K @ 3.60GHz",
+      "DRAM Frequency: DDR4-3200",
+      "Press DEL to enter Setup, F8 for Boot Menu",
+      "Initializing USB Controllers .. <span class='ok'>Done.</span>",
+      "Detecting IDE Devices...",
+      "Primary Master:  ST500LM000 [500GB] <span class='ok'>OK</span>",
+      "Primary Slave:   Not Detected",
+      "Secondary Master: TSSTcorp CDDVDW <span class='ok'>OK</span>",
+      "Secondary Slave:  Not Detected",
+      "S.M.A.R.T. Status ... <span class='ok'>OK</span>",
+      "Checking NVRAM ... <span class='ok'>OK</span>",
+      "Keyboard Detected",
+      "Mouse Detected",
+      "<span class='error'>CMOS checksum error - Defaults loaded</span>",
+      "Memory Test: 16384MB <span class='ok'>OK</span>",
+      "POST Completed",
+      "BOOT DEVICE PRIORITY: HDD > USB > CDROM",
+      "LOADING OPERATING SYSTEM...",
+      "<a href='home.html'>>> home.html</a>"
+    ];
+
+    const output = document.getElementById('output');
+    const cursor = document.getElementById('cursor');
+
+    let currentLine = 0;
+    let currentChar = 0;
+
+    function typeChar() {
+      if (currentLine >= lines.length) {
+        cursor.style.display = 'inline-block';
+        return;
+      }
+
+      const line = lines[currentLine];
+      const plainText = line.replace(/<[^>]*>?/gm, '');
+
+      if (currentChar <= plainText.length) {
+        const typedText = plainText.slice(0, currentChar);
+        const before = lines.slice(0, currentLine).join('\n');
+        output.innerHTML = before + (before ? '\n' : '') + typedText;
+        currentChar++;
+        setTimeout(typeChar, 10); // speed per character
+      } else {
+        const display = lines.slice(0, currentLine).join('\n') + (currentLine ? '\n' : '') + lines[currentLine];
+        output.innerHTML = display;
+        currentLine++;
+        currentChar = 0;
+        setTimeout(typeChar, 200); // delay per line
+      }
+    }
+
+    setTimeout(typeChar, 500); // initial delay
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent = now.toLocaleTimeString();
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

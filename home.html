@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Members | murdered.lol</title>
+  <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="scanlines.css" />
+  
+</head>
+<body>
+
+  <div class="members-container" id="carousel"></div>
+  <p class="hint-text">Click on an image to show more</p>
+  <p class="hint-text2">any information on PEDOS or EXTORTERS Dm t.me/partywire</p>
+  
+
+  <div class="controls">
+    <button class="arrow left" onclick="prevCard()">&#8592;</button>
+    <button class="arrow right" onclick="nextCard()">&#8594;</button>
+  </div>
+
+  <script>
+    const members = [
+      {
+        username: "fragment",
+        avatar: "tragic.png",
+        telegram: "https://t.me/partywire",
+        discord: "https://discord.com/users/partywire",
+        doxbin: "https://doxbin.net/user/flanked",
+        bio: "#NBM, Contacts below,"
+      },
+      {
+        username: "Dorm",
+        avatar: "Dorm.png",
+        telegram: "https://t.me/coolnigga234",
+        discord: "https://discord.com/users/dorm040",
+        doxbin: "https://doxbin.net/user/wghwihgwehiug",
+        bio: "Lowkey just a retard, Contacts below."
+      },
+      {
+        username: "sim",
+        avatar: "sim2.jpg",
+        telegram: "https://t.me/fuckexodus",
+        discord: "https://discord.com/users/tragicera",
+        doxbin: "https://doxbin.net/user/quc",
+        bio: "im sim, Contacts below."
+      },
+      {
+        username: "tragic",
+        avatar: "tragics.png",
+        telegram: "https://t.me/fuckexodus",
+        discord: "https://discord.com/users/tragicera",
+        doxbin: "https://doxbin.net/user/flanked",
+        bio: "Tragic Era, Contacts below."
+      },
+    ];
+
+    const carousel = document.getElementById('carousel');
+    let currentIndex = 0;
+
+    function renderCards() {
+      carousel.innerHTML = '';
+      members.forEach((member, index) => {
+        const card = document.createElement('div');
+        card.className = 'member-card';
+        if (index === currentIndex) card.classList.add('active');
+        card.innerHTML = `
+          <img class="cover-image" src="${member.avatar}" alt="${member.username}" />
+          <div class="content">
+            <strong>${member.username}</strong>
+            <div class="bio">${member.bio}</div>
+            <div class="socials">
+              <a href="${member.telegram}" target="_blank"><img src="telegram.png" alt="Telegram"></a>
+              <a href="${member.discord}" target="_blank"><img src="discord.png" alt="Discord"></a>
+              <a href="${member.doxbin}" target="_blank"><img src="doxbin.png" alt="Doxbin"></a>
+            </div>
+          </div>
+        `;
+        card.addEventListener('click', () => {
+          card.classList.toggle('expanded');
+        });
+        carousel.appendChild(card);
+      });
+    }
+
+    function prevCard() {
+      currentIndex = (currentIndex - 1 + members.length) % members.length;
+      renderCards();
+    }
+
+    function nextCard() {
+      currentIndex = (currentIndex + 1) % members.length;
+      renderCards();
+    }
+
+    renderCards();
+  </script>
+
+  <script>
+const titles = [
+  "im ur father",
+  "skid?",
+  "meow meow",
+  "#NBM",
+  "Geeks.",
+  "Visit."
+];
+
+let index = 0;
+
+function rotateTitle() {
+  document.title = titles[index];
+  index = (index + 1) % titles.length;
+}
+
+setInterval(rotateTitle, 10); // Change title every 2 seconds
+
+// Initialize immediately
+rotateTitle();
+  </script>
+<audio id="bgMusic" src="murdered.mp3" preload="auto"></audio>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("bgMusic");
+
+    // Start music on user interaction to comply with browser policies
+    const playMusic = () => {
+      music.play().catch(e => console.log("Autoplay blocked:", e));
+      document.removeEventListener("click", playMusic);
+    };
+
+    document.addEventListener("click", playMusic);
+  });
+ volume = 0.5; // Set initial volume
+  document.getElementById("bgMusic").volume = 0.5; // Set initial volume
+   
+  </script>
+
+</script>
+
+
+</body>
+</html>
