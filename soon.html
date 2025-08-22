@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+<style>
+    @font-face {
+        font-family: 'Minecraftia';
+        src: url('/fonts/Minecraftia.ttf') format('truetype');
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: white;
+        font-family: 'Minecraftia', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        background-image: url('/img/gif.gif');
+        background-size: 30%;
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        flex-direction: column;
+    }
+
+    .coming-soon {
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .subtext {
+        font-size: 18px;
+        opacity: 0.7;
+    }
+
+    #bottom-left {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-size: 0.5em;
+    }
+
+
+    @keyframes flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            opacity: 1;
+        }
+        20%, 22%, 24%, 55% {
+            opacity: 0.4;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="coming-soon glow">This part is coming soon</div>
+    <div class="subtext">Stay tuned for updates...</div>
+
+    <div id="bottom-left">© murdered.lol 2025</div>
+</body>
+</html>
