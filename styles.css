@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    font-family: 'vcrosdmono', sans-serif;
+    color: white;
+    position: relative;
+    background-image: url('images/gif.gif');
+    background-size: 30%;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+.roster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* slightly smaller spacing */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile-card {
+    text-align: center;
+    position: relative; /* so scanlines overlay everything properly */
+    z-index: 1; 
+}
+
+.profile-pfp {
+    width: 120px; /* smaller than before */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0; /* square */
+    display: block;
+    margin: 0 auto 8px;
+}
+
+.profile-name {
+    font-size: 1.2rem; /* smaller name */
+    margin-bottom: 4px;
+}
+
+.profile-desc {
+    font-size: 0.9rem; /* smaller bio */
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.profile-link-icon {
+    width: 28px; /* slightly smaller icons */
+    height: 28px;
+    filter: grayscale(100%) brightness(0.8);
+    transition: all 0.3s ease;
+}
+
+.profile-link-icon:hover {
+    filter: grayscale(0%) brightness(1.1);
+    transform: scale(1.2);
+}
+
+/* --- Overlay --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.overlay-content h1 {
+    font-family: 'vcrosdmono', monospace;
+    font-size: 2rem;
+    color: #fdfdfd;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.overlay-content button {
+    padding: 15px 40px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    background: #2C2C2C;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.overlay-content button:hover {
+    background: #1b0b0b;
+    transform: scale(1.05);
+}
+
+/* Zombie background */
+.overlay-bg {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 500px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Hide main content initially */
+.roster {
+    display: none;
+}
+
+/* Scanlines overlay everything including pfp and text */
+.scanlines {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* on top of everything */
+    background: repeating-linear-gradient(
+        rgba(3, 3, 3, 0.836) 0px,
+        rgba(22, 22, 22, 0.733) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    animation: scanlinesMove 0.5s linear infinite;
+}
+
+@keyframes scanlinesMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 3px; }
+}
