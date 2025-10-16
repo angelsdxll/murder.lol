@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<title>murdered.</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <h2>Welcome to the abyss.</h2>
+    <p>Click continue to enter.</p>
+    <button id="continueBtn">Continue</button>
+  </div>
+</div>
+<a href="https://t.me/rolls_royce_stores" target="_blank">
+        <pre>
+                         .___                       .___
+  _____  __ _________  __| _/___________   ____   __| _/
+ /     \|  |  \_  __ \/ __ |/ __ \_  __ \_/ __ \ / __ | 
+|  Y Y  \  |  /|  | \/ /_/ \  ___/|  | \/\  ___// /_/ | 
+|__|_|  /____/ |__|  \____ |\___  >__|    \___  >____ | 
+      \/                  \/    \/            \/     \/ 
+</pre>
+</a>
+
+        <div class="profiles" >
+        <a href="httpps://doxbin.com/flanked" class="profile-link">
+          <div class="profile">
+            <img src="img/b9f08d427f03bd8aac5bfcf37629db13.jpg">
+            <h3 class="other">sim</h3>
+            <h6 class="bio">#broke Nigga</h6>
+          </div>
+        </a>      
+              <a href="https://t.me/monerokid" class="profile-link">
+              <div class="profile">
+                <img src="img/pursuit.png">
+                <h3 class="other">pursuit</h3>
+                <h6 class="bio">im in a pursuit</h6>
+              </div>
+            </a> 
+              <a href="https://t.me/valuingniggers" class="profile-link">
+              <div class="profile">
+                <img src="img/8246828af0cf9c88234bff35f737a950.jpg">
+                <h3 class="other"value</h3>
+                <h6 class="bio">I value you.</h6>
+              </div>
+            </a> 
+              <a href="https://t.me/?????????" class="profile-link">
+              <div class="profile">
+                <img src="img/config.png">
+                <h3 class="other">config</h3>
+                <h6 class="bio">Hm?</h6>
+              </div>
+            </a>
+              <a href="https://doxbin.net/qq" class="profile-link">
+              <div class="profile">
+                <img src="img/instakill.png">
+                <h3 class="other">instakill</h3> <center>
+                <h6 class="bio">INSTAKILL</h6>
+              </div>
+
+            <audio id="bg-music" loop>
+     <source src="/audio/audio404.mp3">
+</audio>
+
+
+<script>
+  document.getElementById('grid').addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+
+    card.animate(
+      [
+        { transform: 'scale(1)' },
+        { transform: 'scale(0.99)' },
+        { transform: 'scale(1)' }
+      ],
+      { duration: 180, easing: 'ease-out' }
+    );
+
+    console.log('Clicked card', card.dataset.id);
+  });
+
+  document.getElementById('grid').addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    const card = document.activeElement;
+    if (card && card.classList.contains('card')) {
+      card.click();
+    }
+  });
+</script>
+
+<script>
+  const overlay = document.getElementById('overlay');
+  const continueBtn = document.getElementById('continueBtn');
+
+  continueBtn.addEventListener('click', () => {
+    overlay.classList.add('fade-out');
+    document.body.style.overflow = 'auto';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 800);
+  });
+</script>
+
+            <script>
+const audio = document.getElementById('bg-music');
+function startMusic() {
+    audio.play().catch(err => console.log("Playback blocked:", err));
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('keydown', startMusic);
+}
+document.addEventListener('click', startMusic);
+document.addEventListener('keydown', startMusic);
+</script>
+</html>
+</html>
