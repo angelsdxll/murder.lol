@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="desktop.css">
+<title></title>
+</head>
+<body class="crt">
+
+<div class="main">
+  <!-- Desktop apps -->
+  <div class="desktop-apps">
+    <div class="user-app" onclick="openUserTerminal('Pursuit','Valor.jpg','Fuck you my nigga','https://t.me/monerokid','https://doxbin.com/pursuit')" style="top:100px; left:100px;">
+      <img src="pursuit.jpg" class="user-avatar">
+      <div class="username">Pursuit</div>
+    </div>
+    <div class="user-app" onclick="openUserTerminal('Value','Synqronize.png','I value you','https://t.me/valuingyou','https://doxbin.com/valuing')" style="top:100px; left:220px;">
+      <img src="value.jpg" class="user-avatar">
+      <div class="username">Value</div>
+    </div>
+    <div class="user-app" onclick="openUserTerminal('Tragic','Spider.png','Tragic era','undefined','https://doxbin.com/flanked')" style="top:100px; left:340px;">
+      <img src="tragic.jpg" class="user-avatar">
+      <div class="username">Tragic</div>
+    </div>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+  <div class="taskbar-icon" id="kali-icon" title="Open Terminal">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+      <path d="M4 17L10 11L4 5" stroke="#bfbfbf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 19H20" stroke="#bfbfbf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="taskbar-time" id="time-display"></div>
+</div>
+
+<!-- Terminal Overlay -->
+<div class="kali-overlay" id="kali-overlay">
+  <div class="kali-terminal" id="kali-terminal">
+    <div class="kali-terminal-header" id="kali-drag-header">
+      <span id="terminal-title">terminal@murdered</span>
+      <span class="kali-close-btn" onclick="hideKaliTerminal()">✕</span>
+    </div>
+    <div class="kali-terminal-body" id="kali-terminal-text"></div>
+  </div>
+</div>
+  <!-- Audio -->
+  <audio id="startup-sound" preload="auto">
+    <source src="Elskling.mp3" type="audio/mpeg" />
+  </audio>
+
+<script src="s.js"></script>
+</body>
+</html>
